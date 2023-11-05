@@ -1,11 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import AllFood from "../components/AllFood/AllFood";
+import { Helmet } from "react-helmet-async";
 
 const AvailableFood = () => {
   const data = useLoaderData();
   console.log(data);
   return (
     <div className="py-20">
+      <Helmet>
+        <title>Micro Donation | Available Food</title>
+      </Helmet>
       <h1 className="text-center text-5xl font-bold dark:text-white mt-10">
         Available Food Section
       </h1>
