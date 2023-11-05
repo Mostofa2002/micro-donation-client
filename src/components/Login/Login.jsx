@@ -1,9 +1,70 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { signIn, googleLogin, loading } = useAuth();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location);
+  if (loading) {
+    return (
+      <span className="lg:mx-[600px] mx-[200px] my-[100px] loading loading-infinity loading-lg"></span>
+    );
+  }
+  const Google = () => {
+    googleLogin()
+      .then((result) => {
+        Swal.fire({
+          title: "Wow!",
+          text: "You Sign In with Google Sucessfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        console.log(result.user);
+
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const HandleLogin = (e) => {
+    e.preventDefault();
+    setError("");
+
+    const form = new FormData(e.currentTarget);
+    console.log(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Wow!",
+          text: "You Sign In Sucessfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+
+        navigate(location?.state ? location?.state : "/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setError("Oops! Password is not correct please try again.");
+      });
+  };
+
   return (
-    <div className=" flex justify-center mx-auto items-center my-20 ">
-      <div className="w-[30%] px-6 py-8 md:px-8 ">
+    <div className="my-24  flex justify-center mx-auto ">
+      <div className="lg:w-[30%] px-6 py-8 md:px-8 ">
         <div className="flex justify-center mx-auto">
           <img
             className="w-auto h-24 rounded-full"
@@ -13,11 +74,11 @@ const Login = () => {
         </div>
 
         <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
-          Welcome, Sign In Here!.
+          Welcome, Login Here!.
         </p>
 
         <button
-          // onClick={Google}
+          onClick={Google}
           className=" w-full flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <div className="px-4 py-2">
@@ -28,7 +89,7 @@ const Login = () => {
             />
           </div>
 
-          <span className="w-5/6 mr-14 py-3 font-bold text-center">
+          <span className="w-5/6 px-4 py-3 font-bold text-center">
             Sign in with Google
           </span>
         </button>
@@ -48,9 +109,7 @@ const Login = () => {
 
         {/* login from */}
         <div>
-          <form
-          // onSubmit={HandleLogin}
-          >
+          <form onSubmit={HandleLogin}>
             <div className="mt-4 form-control">
               <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
                 Email Address
@@ -84,12 +143,12 @@ const Login = () => {
                 type="password"
               />
             </div>
-            {/* {error && (
-                <p className="text-red-700 font-bold mt-5  ">
-                  {" "}
-                  <i className="fa-solid fa-triangle-exclamation"></i> {error}
-                </p>
-              )} */}
+            {error && (
+              <p className="text-red-700 font-bold mt-5  ">
+                {" "}
+                <i className="fa-solid fa-triangle-exclamation"></i> {error}
+              </p>
+            )}
             <div className="mt-6 form-control">
               <button className="w-full px-6 py-3 text-base font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                 LogIn
@@ -104,7 +163,7 @@ const Login = () => {
             href="#"
             className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
           >
-            New to here?
+            ALready Have An Account
           </a>
 
           <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
@@ -112,7 +171,7 @@ const Login = () => {
 
         <div className="mt-6">
           <Link to="/register">
-            <button className="w-full mt-4 px-6 py-3 text-base font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
+            <button className="w-full mt-4 px-6 py-3 text-base font-medium tracking-wide text-white capitalize transition-colors duration-300 transform  bg-green-500 rounded-lg hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
               SignUp
             </button>
           </Link>

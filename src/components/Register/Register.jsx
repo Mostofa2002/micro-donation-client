@@ -1,6 +1,54 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+  const { createUser } = useAuth();
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const SignUpHandle = (e) => {
+    e.preventDefault();
+    setPassword("");
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    const name = form.get("name");
+    const photo = form.get("photo");
+    console.log(email, password, name);
+
+    if (password.length < 6) {
+      setPassword("Opps! Password must contain minimum 6 characters");
+      return;
+    } else if (!/[A-Z]/.test(password) || !/[!@#$%^&*]/.test(password)) {
+      setPassword(
+        "Opps! Password must contain special characters and capital latter"
+      );
+      return;
+    }
+    createUser(email, password)
+      .then((result) => {
+        Swal.fire({
+          title: "Wow!",
+          text: "You Sign Up Sucessfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        console.log(result.user);
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        });
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="my-20">
       <section className="">
@@ -14,12 +62,12 @@ const Register = () => {
               />
             </div>
             <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
-              Welcome, Register Here!.
+              Welcome, Sign Up Here!.
             </p>
 
             <div className="flex items-center justify-center mt-6"></div>
 
-            <form>
+            <form onSubmit={SignUpHandle}>
               <div className="relative flex items-center mt-8">
                 <span className="absolute">
                   <svg
@@ -107,7 +155,13 @@ const Register = () => {
                 />
               </div>
 
-              {/* {password && <p className="text-red-700 font-bold mt-5  "> <i className="fa-solid fa-triangle-exclamation"></i> {password}</p>} */}
+              {password && (
+                <p className="text-red-700 font-bold mt-5  ">
+                  {" "}
+                  <i className="fa-solid fa-triangle-exclamation"></i>{" "}
+                  {password}
+                </p>
+              )}
               <div className="mt-6">
                 <button
                   type="submit"
