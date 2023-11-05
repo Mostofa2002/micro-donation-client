@@ -14,7 +14,7 @@ const Register = () => {
               />
             </div>
             <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
-              Welcome, Sign Up Here!.
+              Welcome, Register Here!.
             </p>
 
             <div className="flex items-center justify-center mt-6"></div>
