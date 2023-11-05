@@ -1,7 +1,8 @@
-import {} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const FeaturesCards = ({ items }) => {
   const {
+    _id,
     image,
     food_name,
     expiration_date,
@@ -12,7 +13,7 @@ const FeaturesCards = ({ items }) => {
     donator_image,
   } = items || {};
   return (
-    <div className="card lg:w-[450px] h-[610px] dark:bg-gray-400  bg-base-100 shadow-xl">
+    <div className="card lg:w-[450px] h-[700px] dark:bg-gray-400  bg-base-100 shadow-xl">
       <h2 className="card-title foot-medium ml-6 mt-5 dark:text-white">
         {food_name}
       </h2>
@@ -45,6 +46,11 @@ const FeaturesCards = ({ items }) => {
           alt=""
         />
         <p className="text-2xl font-bold">{donator_name}</p>
+      </div>
+      <div className="flex  justify-center mt-10">
+        <Link to={`/singleFood${_id}`}>
+          <button className="btn btn-neutral w-80 "> See Details</button>
+        </Link>
       </div>
     </div>
   );
