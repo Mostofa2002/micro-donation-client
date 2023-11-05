@@ -1,0 +1,82 @@
+[
+  {
+    "quantity": 50,
+    "food_name": "Canned Soup",
+    "expiration_date": "2023-12-15",
+    "location": "Community Center",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTveBT86Jgsgrldk6dbpVvG0YOnzvIlfqAcJL1uTbbI0CYWPwFRnwIi0VqlaLw42EAa27E&usqp=CAU",
+    "additional_notes": "Low-sodium preferred"
+  },
+  {
+    "quantity": 100,
+    "food_name": "Rice",
+    "expiration_date": "2024-02-28",
+    "location": "Local Food Bank",
+    "image": "https://cdn01.pinkoi.com/product/5hbzyDNK/0/640x530.jpg",
+    "additional_notes": "White rice, non-perishable"
+  },
+  {
+    "quantity": 30,
+    "food_name": "Canned Tuna",
+    "expiration_date": "2023-11-30",
+    "location": "Shelter for Homeless",
+    "image": "https://m.media-amazon.com/images/I/513TMXj-uTS._AC_UF1000,1000_QL80_.jpg",
+    "additional_notes": "In water or oil"
+  },
+  {
+    "quantity": 20,
+    "food_name": "Fresh Apples",
+    "expiration_date": "2023-11-10",
+    "location": "Local School",
+    "image": "https://sobjibazaar.com/images/thumbs/0002372_apple-500-gm_510.png",
+    "additional_notes": "Washed and ready to eat"
+  },
+  {
+    "quantity": 40,
+    "food_name": "Pasta",
+    "expiration_date": "2024-01-20",
+    "location": "Food Pantry",
+    "image": "https://chaldn.com/_mpimage/hat-macaroni-penne-pasta-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D98836&q=best&v=1",
+    "additional_notes": "Any type of pasta"
+  },
+  {
+    "quantity": 75,
+    "food_name": "Bread",
+    "expiration_date": "2023-11-08",
+    "location": "Church Food Drive",
+    "image": "https://chaldn.com/_mpimage/white-bread-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D70765&q=best&v=1",
+    "additional_notes": "Freshly baked preferred"
+  },
+  {
+    "quantity": 60,
+    "food_name": "Canned Vegetables",
+    "expiration_date": "2024-03-15",
+    "location": "Community Center",
+    "image": "https://www.foodstoragemoms.com/wp-content/uploads/2022/06/15-Canned-Vegetables-I-Highly-Recommend.jpeg",
+    "additional_notes": "Variety of vegetables"
+  },
+  {
+    "quantity": 25,
+    "food_name": "Milk",
+    "expiration_date": "2023-11-20",
+    "location": "Shelter for Women",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYEMJpSlGkjCbkP2iufLDHPABExQG0QhBWUi8gya0H8RdUTka1Sc9NnPtz52QXRGpGvSE&usqp=CAU",
+    "additional_notes": "Fresh and pasteurized"
+  },
+  {
+    "quantity": 55,
+    "food_name": "Cereal",
+    "expiration_date": "2024-02-10",
+    "location": "Local Food Bank",
+    "image": "https://chaldn.com/_mpimage/nestle-gold-corn-flakes-breakfast-cereal-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D110703&q=best&v=1",
+    "additional_notes": "Whole grain cereals"
+  },
+  {
+    "quantity": 15,
+    "food_name": "Peanut Butter",
+    "expiration_date": "2024-01-05",
+    "location": "Food Pantry",
+    "image": "https://m.media-amazon.com/images/I/919RaN4jgRL._AC_UF1000,1000_QL80_.jpg",
+    "additional_notes": "No added sugar"
+  }
+]
