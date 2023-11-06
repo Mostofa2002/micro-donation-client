@@ -7,6 +7,7 @@ import ManageMyFood from "../pages/ManageMyFood";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import AddFood from "../components/AddFood/AddFood";
+import SingleFood from "../components/singlFood/SingleFood";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,12 @@ const router = createBrowserRouter([
       {
         path: "/foodAdd",
         element: <AddFood />,
+      },
+      {
+        path: "/singleFood/:id",
+        element: <SingleFood />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/singleFood/${params.id}`),
       },
     ],
   },

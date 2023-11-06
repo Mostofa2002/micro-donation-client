@@ -4,38 +4,46 @@ const AddFood = () => {
   const HandelAddProduct = (event) => {
     event.preventDefault();
     const from = event.target;
-    const name = from.name.value;
-    const description = from.description.value;
-    const brand = from.brand.value;
-    const type = from.type.value;
-    const price = from.price.value;
-    const rating = from.rating.value;
-    const photo = from.photo.value;
 
-    const addProduct =
-      { name, description, brand, type, price, rating, photo } || {};
-    console.log(addProduct);
+    const food_name = from.food_name.value;
+    const additional_notes = from.additional_notes.value;
+
+    const location = from.location.value;
+
+    const image = from.image.value;
+
+    const expiration_date = from.expiration_date.value;
+
+    const addRequest =
+      {
+        food_name,
+        additional_notes,
+        location,
+        image,
+        expiration_date,
+      } || {};
+    console.log(addRequest);
 
     // form to database
-    fetch(
-      " https://server-side-oha3y55br-mostofa-tajs-projects.vercel.app/product",
-      {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(addProduct),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            icon: "success",
-            title: "SuccessFull",
-            text: "Product added successfully",
-            confirmButtonText: "Ok",
-          });
-        }
-      });
+    // fetch(
+    //   " https://server-side-oha3y55br-mostofa-tajs-projects.vercel.app/product",
+    //   {
+    //     method: "POST",
+    //     headers: { "content-type": "application/json" },
+    //     body: JSON.stringify(addRequest),
+    //   }
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.insertedId) {
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "SuccessFull",
+    //         text: "Product added successfully",
+    //         confirmButtonText: "Ok",
+    //       });
+    //     }
+    //   });
   };
   return (
     <div>
@@ -50,25 +58,25 @@ const AddFood = () => {
               {/* product name */}
               <div className="flex-1 form-control ">
                 <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                  Product Name
+                  Food Name
                 </label>
                 <input
-                  name="name"
+                  name="food_name"
                   type="text"
-                  placeholder="Enter Product Name"
+                  placeholder="Enter Food Name"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
               {/* choose the brand */}
               <div className="flex-1  form-control ">
                 <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                  Brand Name
+                  Food Quantity
                 </label>
                 <input
-                  name="brand"
+                  name="quantity"
                   type="text"
                   list="Brand"
-                  placeholder="Select Brand"
+                  placeholder="Select Quantity"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 <datalist id="Brand"></datalist>
@@ -78,13 +86,12 @@ const AddFood = () => {
               {/* Product Type */}
               <div className="flex-1 form-control 5">
                 <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                  Product Type
+                  Expired Date
                 </label>
                 <input
-                  name="type"
+                  name="expiration_date"
                   type="text"
-                  list="Product"
-                  placeholder="Select Product Type"
+                  placeholder="Select Expiration_date"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 <datalist id="Product"></datalist>
@@ -92,12 +99,12 @@ const AddFood = () => {
               {/* Product price */}
               <div className="flex-1  form-control ">
                 <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                  Product Price
+                  Additional Notes
                 </label>
                 <input
-                  name="price"
+                  name="additional_notes"
                   type="text"
-                  placeholder="Enter Product Price"
+                  placeholder="Enter Additional Notes"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -106,24 +113,25 @@ const AddFood = () => {
               {/* description */}
               <div className="flex-1 form-control ">
                 <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                  Short Description
+                  Pickup Location
                 </label>
                 <input
-                  name="description"
+                  name="location"
                   type="text"
-                  placeholder="Enter Short Description Of Product"
+                  placeholder="Enter Location Of Food"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
               {/* rating */}
               <div className=" form-control flex-1">
                 <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                  Rating
+                  Food Status
                 </label>
                 <input
-                  name="rating"
+                  defaultValue={"Available"}
+                  name="status"
                   type="text"
-                  placeholder="Enter  Rating"
+                  placeholder="status"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -132,10 +140,10 @@ const AddFood = () => {
             {/* photo url */}
             <div className="flex-1 form-control">
               <label className="block mb-2 text-xl font-bold text-white dark:text-gray-200">
-                Product Image
+                Food Image
               </label>
               <input
-                name="photo"
+                name="image"
                 type="text"
                 placeholder="Enter Product Image URL"
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"

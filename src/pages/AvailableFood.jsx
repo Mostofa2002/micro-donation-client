@@ -31,7 +31,7 @@ const AvailableFood = () => {
       </h1>
       <div className=" flex justify-center gap-3 mt-4">
         <button onClick={() => setAsc(!asc)} className="btn btn-neutral">
-          Sort by Date
+          {asc ? "Sort by Asc" : " Sort by Desc"}
         </button>
         <div className="form-control">
           <div className="input-group">

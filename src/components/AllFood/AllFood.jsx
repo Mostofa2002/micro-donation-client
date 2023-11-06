@@ -48,7 +48,7 @@ const AllFood = ({ items }) => {
         <p className="text-2xl font-bold">{donator_name}</p>
       </div>
       <div className="flex  justify-center mt-10">
-        <Link to={`/singleFood${_id}`}>
+        <Link to={`/singleFood/${_id}`}>
           <button className="btn btn-neutral w-80 "> See Details</button>
         </Link>
       </div>
