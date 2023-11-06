@@ -26,7 +26,7 @@ const Nav = () => {
                   <a>Home</a>
                 </li>{" "}
               </NavLink>
-              <NavLink to="/productAdd">
+              <NavLink to="/foodAdd">
                 <li className="text-xl font-semibold">
                   <a>Add Food</a>
                 </li>
@@ -66,7 +66,7 @@ const Nav = () => {
                 <a>Home</a>
               </li>{" "}
             </NavLink>
-            <NavLink to="/productAdd">
+            <NavLink to="/foodAdd">
               <li className="text-xl font-semibold">
                 <a>Add Food</a>
               </li>
