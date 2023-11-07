@@ -1,27 +1,36 @@
-import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import { Swal } from "sweetalert2";
+// import { useEffect, useState } from "react";
+// import useAuth from "../../hooks/useAuth";
+
+import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 
 const Update = () => {
   const data = useLoaderData();
   console.log(data);
-  const { user } = useAuth();
+  //   const { user } = useAuth();
   //   console.log(user);
-  const [time, setTime] = useState(null);
+  //   const [time, setTime] = useState(null);
+  const {
+    image,
+    food_name,
+    expiration_date,
+    quantity,
+    _id,
+    additional_notes,
+    location,
+  } = data || {};
+  console.log(data);
 
-  useEffect(() => {
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString();
-    setTime(formattedDate);
-  }, [time]);
+  //   useEffect(() => {
+  //     const now = new Date();
+  //     const formattedDate = now.toLocaleDateString();
+  //     setTime(formattedDate);
+  //   }, [time]);
 
   const HandelAddProduct = (event) => {
     event.preventDefault();
     const from = event.target;
-    const donator_name = user?.displayName;
-    const donatorEmail = user?.email;
-    const donator_image = user?.photoURL;
+
     const food_name = from.food_name.value;
     const additional_notes = from.additional_notes.value;
     const location = from.location.value;
@@ -32,11 +41,8 @@ const Update = () => {
 
     const addUpdate =
       {
-        donatorEmail,
         status,
         quantity,
-        donator_name,
-        donator_image,
         food_name,
         additional_notes,
         location,
@@ -44,9 +50,10 @@ const Update = () => {
         expiration_date,
       } || {};
     console.log(addUpdate);
+
     // form to database
-    fetch(" http://localhost:5000/update", {
-      method: "PATCH",
+    fetch(` http://localhost:5000/update/${_id}`, {
+      method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(addUpdate),
     })
@@ -56,7 +63,7 @@ const Update = () => {
           Swal.fire({
             icon: "success",
             title: "SuccessFull",
-            text: "Product added successfully",
+            text: "Update successfully",
             confirmButtonText: "Ok",
           });
         }
@@ -78,6 +85,7 @@ const Update = () => {
                   Food Name
                 </label>
                 <input
+                  defaultValue={food_name}
                   name="food_name"
                   type="text"
                   placeholder="Enter Food Name"
@@ -90,6 +98,7 @@ const Update = () => {
                   Food Quantity
                 </label>
                 <input
+                  defaultValue={quantity}
                   name="quantity"
                   type="text"
                   list="Brand"
@@ -106,7 +115,7 @@ const Update = () => {
                   Expired Date
                 </label>
                 <input
-                  defaultValue={time}
+                  defaultValue={expiration_date}
                   name="expiration_date"
                   type="text"
                   placeholder="Select Expiration_date"
@@ -120,6 +129,7 @@ const Update = () => {
                   Additional Notes
                 </label>
                 <input
+                  defaultValue={additional_notes}
                   name="additional_notes"
                   type="text"
                   placeholder="Enter Additional Notes"
@@ -134,6 +144,7 @@ const Update = () => {
                   Pickup Location
                 </label>
                 <input
+                  defaultValue={location}
                   name="location"
                   type="text"
                   placeholder="Enter Location Of Food"
@@ -161,6 +172,7 @@ const Update = () => {
                 Food Image
               </label>
               <input
+                defaultValue={image}
                 name="image"
                 type="text"
                 placeholder="Enter Product Image URL"
@@ -172,7 +184,7 @@ const Update = () => {
               <input
                 className=" px-6 py-3 mt-6 text-lg font-bold hover:bg-black text-white btn bg-green-500"
                 type="submit"
-                value="Add Food"
+                value="Update Food "
               />
             </div>
           </form>

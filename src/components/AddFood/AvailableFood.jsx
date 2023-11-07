@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import AllFood from "../components/AllFood/AllFood";
+import AllFood from "../AllFood/AllFood";
 import { Helmet } from "react-helmet-async";
 
 const AvailableFood = () => {

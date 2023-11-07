@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import Swal from "sweetalert2";
 import MyFoodRow from "./MyFoodRow";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const MyCart = () => {
   const { user } = useAuth();
