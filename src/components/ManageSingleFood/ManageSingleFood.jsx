@@ -15,7 +15,7 @@ const ManageSingleFood = () => {
   }, [user, id]);
   console.log(data);
   return (
-    <div>
+    <div className="flex justify-center">
       {data.map((item) => (
         <ManageSingleCard key={item._id} item={item}></ManageSingleCard>
       ))}

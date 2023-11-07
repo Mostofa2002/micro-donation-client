@@ -28,7 +28,7 @@ const AddFood = () => {
     const expiration_date = from.expiration_date.value;
     const status = from.status.value;
 
-    const addFood =
+    const addRequest =
       {
         donatorEmail,
         status,
@@ -41,13 +41,13 @@ const AddFood = () => {
         image,
         expiration_date,
       } || {};
-    console.log(addFood);
+    console.log(addRequest);
 
     // form to database
     fetch(" http://localhost:5000/allFood", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(addFood),
+      body: JSON.stringify(addRequest),
     })
       .then((res) => res.json())
       .then((data) => {

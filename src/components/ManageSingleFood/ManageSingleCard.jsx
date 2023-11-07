@@ -1,33 +1,32 @@
 import { useEffect, useState } from "react";
 
 const ManageSingleCard = ({ item }) => {
-  console.log(item);
-  const { requesterImage, status } = item;
+  const {
+    requesterImage,
+    status,
+    requesterEmail,
+    requestTimes,
+    requesterName,
+  } = item;
   const [change, setChange] = useState(true);
-  useEffect(() => {
-    fetch(
-      `http://localhost:5000/allFood/patch?change=${
-        change ? "Available" : "Delivered"
-      }`
-    )
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, [change]);
+
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card   bg-base-100 shadow-xl">
         <figure>
-          <img src={requesterImage} alt="Shoes" />
+          <img className="w-full" src={requesterImage} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <h2 className="card-title">Requester Name:{requesterName}</h2>
+          <h2 className="card-title">Requester Email:{requesterEmail}</h2>
+          <h2 className="card-title">Requester Time:{requestTimes}</h2>
+
           <div className="card-actions justify-end">
             <button
               onClick={() => setChange(!status)}
               className="btn btn-primary"
             >
-              {change ? change === status : "Delivered"}
+              {change ? change == status : "Delivered"}
             </button>
           </div>
         </div>

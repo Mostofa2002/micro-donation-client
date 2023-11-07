@@ -7,6 +7,7 @@ const SingleFood = () => {
   const data = useLoaderData();
   const btn = useRef();
   const { user } = useAuth();
+  console.log(user);
 
   const {
     image,
@@ -17,8 +18,10 @@ const SingleFood = () => {
     donator_name,
     additional_notes,
     location,
+    donatorEmail,
   } = data || {};
   console.log(data);
+
   const [time, setTime] = useState(null);
 
   useEffect(() => {
@@ -31,30 +34,31 @@ const SingleFood = () => {
     event.preventDefault();
 
     const from = event.target;
-    const email = user?.email;
+    const requestTimes = from.times.value;
     const name = from.name.value;
     const additional_notes = from.additional_notes.value;
     const donation = from.donation.value;
     const location = from.location.value;
     const donator_name = from.donator_name.value;
     const image = from.image.value;
-    const requestTimes = from.times.value;
     const expiration_date = from.expiration_date.value;
     const foodId = from.foodId.value;
+    const donatorEmail = from.donatorEmail.value;
 
     const addRequest =
       {
-        status: data?.status,
-        sellerEmail: data?.userEmail,
+        requesterName: user?.displayName,
         requesterImage: user?.photoURL,
+        requestTimes,
+        requesterEmail: user?.email,
+        status: data?.status,
+        donatorEmail,
         name,
         additional_notes,
         donation,
         location,
         donator_name,
-        email,
         image,
-        requestTimes,
         expiration_date,
         foodId,
       } || {};
@@ -158,7 +162,6 @@ const SingleFood = () => {
                 <div className="flex items-center gap-1">
                   <p className="text-xl">Donator Name</p>
                   <input
-                    disabled
                     defaultValue={donator_name}
                     name="donator_name"
                     type="text"
@@ -166,14 +169,13 @@ const SingleFood = () => {
                     className="block w-1/2 px-5 py-1 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700"
                   />
                 </div>
-
                 <div className="flex items-center gap-1">
-                  <p className="text-xl">User</p>
+                  <p className="text-xl">Donator Name</p>
                   <input
-                    disabled
-                    defaultValue={user?.email}
-                    name="user"
+                    defaultValue={donatorEmail}
+                    name="donatorEmail"
                     type="text"
+                    placeholder="Enter Product Name"
                     className="block w-1/2 px-5 py-1 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700"
                   />
                 </div>
@@ -203,6 +205,7 @@ const SingleFood = () => {
                 <div className="flex items-center gap-1">
                   <p className="text-xl">Expire Date</p>
                   <input
+                    disabled
                     defaultValue={expiration_date}
                     name="expiration_date"
                     type="text"
@@ -211,7 +214,7 @@ const SingleFood = () => {
                 </div>
 
                 <div className="flex items-center gap-1">
-                  <p className="text-xl">Notes</p>
+                  <p className="text-xl"> Additional Notes</p>
                   <input
                     defaultValue={additional_notes}
                     name="additional_notes"
