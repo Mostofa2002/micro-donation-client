@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import FeaturesCards from "./FeaturesCards";
 
 const Features = ({ data }) => {
+  console.log(data);
   return (
     <div className="py-20">
       <h1 className="text-center text-5xl font-bold dark:text-white mt-10">
@@ -14,8 +15,7 @@ const Features = ({ data }) => {
       </div>
       <div className="flex items-center justify-center">
         <Link to="/availableFood">
-          {" "}
-          <button className="btn btn-neutral"> Show All Food</button>{" "}
+          <button className="btn btn-neutral"> Show All Food</button>
         </Link>
       </div>
     </div>

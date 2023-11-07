@@ -7,7 +7,7 @@ const SingleFood = () => {
   const data = useLoaderData();
   const btn = useRef();
   const { user } = useAuth();
-  console.log(user);
+
   const {
     image,
     food_name,
@@ -18,7 +18,7 @@ const SingleFood = () => {
     additional_notes,
     location,
   } = data || {};
-
+  console.log(data);
   const [time, setTime] = useState(null);
 
   useEffect(() => {
@@ -38,11 +38,15 @@ const SingleFood = () => {
     const location = from.location.value;
     const donator_name = from.donator_name.value;
     const image = from.image.value;
-    const times = from.times.value;
+    const requestTimes = from.times.value;
     const expiration_date = from.expiration_date.value;
     const foodId = from.foodId.value;
+
     const addRequest =
       {
+        status: data?.status,
+        sellerEmail: data?.userEmail,
+        requesterImage: user?.photoURL,
         name,
         additional_notes,
         donation,
@@ -50,7 +54,7 @@ const SingleFood = () => {
         donator_name,
         email,
         image,
-        times,
+        requestTimes,
         expiration_date,
         foodId,
       } || {};

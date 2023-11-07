@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const AllFood = ({ items }) => {
   const {
+    status,
     _id,
     image,
     food_name,
@@ -13,7 +14,7 @@ const AllFood = ({ items }) => {
     donator_image,
   } = items || {};
   return (
-    <div className="card lg:w-[450px] h-[700px] dark:bg-gray-400  bg-base-100 shadow-xl ">
+    <div className="card lg:w-[450px] h-[750px] dark:bg-gray-400  bg-base-100 shadow-xl ">
       <h2 className="card-title foot-medium ml-6 mt-5 dark:text-white">
         {food_name}
       </h2>
@@ -33,6 +34,9 @@ const AllFood = ({ items }) => {
       </h2>
       <h2 className="card-title foot-medium ml-6 mt-5 dark:text-white">
         Addition Notes:{additional_notes}
+      </h2>
+      <h2 className="card-title foot-medium ml-6 mt-5 dark:text-white">
+        Status: {status}
       </h2>
       <hr className="bg-gray-300 mt-1 w-96 ml-6 " />
       <h2 className="card-title foot-medium ml-6 mt-1 dark:text-white">

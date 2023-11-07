@@ -1,56 +1,72 @@
-import { Swal } from "sweetalert2";
+import Swal from "sweetalert2";
+
+import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const AddFood = () => {
+  const { user } = useAuth();
+  console.log(user);
+  const [time, setTime] = useState(null);
+
+  useEffect(() => {
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString();
+    setTime(formattedDate);
+  }, [time]);
+
   const HandelAddProduct = (event) => {
     event.preventDefault();
     const from = event.target;
-
+    const donator_name = user?.displayName;
+    const donatorEmail = user?.email;
+    const donator_image = user?.photoURL;
     const food_name = from.food_name.value;
     const additional_notes = from.additional_notes.value;
-
     const location = from.location.value;
-
     const image = from.image.value;
-
+    const quantity = parseFloat(from.quantity.value);
     const expiration_date = from.expiration_date.value;
+    const status = from.status.value;
 
-    const addRequest =
+    const addFood =
       {
+        donatorEmail,
+        status,
+        quantity,
+        donator_name,
+        donator_image,
         food_name,
         additional_notes,
         location,
         image,
         expiration_date,
       } || {};
-    console.log(addRequest);
+    console.log(addFood);
 
     // form to database
-    // fetch(
-    //   " https://server-side-oha3y55br-mostofa-tajs-projects.vercel.app/product",
-    //   {
-    //     method: "POST",
-    //     headers: { "content-type": "application/json" },
-    //     body: JSON.stringify(addRequest),
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "SuccessFull",
-    //         text: "Product added successfully",
-    //         confirmButtonText: "Ok",
-    //       });
-    //     }
-    //   });
+    fetch(" http://localhost:5000/allFood", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(addFood),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "SuccessFull",
+            text: "Product added successfully",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
   };
   return (
     <div>
       <div className="mt-8 container mx-auto py-10">
         <div className="w-full px-8 py-10 mx-auto overflow-hidden bg-green-600 rounded-xl shadow-2xl  lg:max-w-5xl shadow-gray-300/50 ">
           <h1 className="text-4xl font-bold text-center  text-white">
-            Add Your Favorite Food To Enjoy More
+            Add Some Food To Help Other
           </h1>
 
           <form onSubmit={HandelAddProduct} className="mt-6">
@@ -89,6 +105,7 @@ const AddFood = () => {
                   Expired Date
                 </label>
                 <input
+                  defaultValue={time}
                   name="expiration_date"
                   type="text"
                   placeholder="Select Expiration_date"
@@ -149,11 +166,12 @@ const AddFood = () => {
                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-blue-50te border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+
             <div className="flex lg:flex-row-reverse flex-col-reverse justify-center lg:gap-10">
               <input
                 className=" px-6 py-3 mt-6 text-lg font-bold hover:bg-black text-white btn bg-green-500"
                 type="submit"
-                value="Add Product"
+                value="Add Food"
               />
             </div>
           </form>
