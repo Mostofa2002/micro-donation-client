@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import MyFoodRow from "./MyFoodRow";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const MyCart = () => {
   const { user } = useAuth();
   // console.log(user);
-  const url = ` http://localhost:5000/Food?email=${user?.email}`;
+  const url = `https://micro-server-side.vercel.app/Food?email=${user?.email}`;
   const [add, setAdd] = useState([]);
   useEffect(() => {
-    fetch(url)
+    fetch(url, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => setAdd(data));
   }, [add, url]);
@@ -18,7 +19,7 @@ const MyCart = () => {
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You really want to delete this Food!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -26,14 +27,14 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(` http://localhost:5000/allFoodS/${id}`, {
+        fetch(`https://micro-server-side.vercel.app/allFoodS/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
             if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Swal.fire("Deleted!", "Your food has been deleted.", "success");
               const remaining = add.filter(() => add._id !== id);
               setAdd(remaining);
             }
@@ -42,15 +43,34 @@ const MyCart = () => {
     });
   };
   return (
-    <div className="flex items-center justify-center lg:min-h-screen py-10">
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 lg:mx-48 py-10 ">
-        {add?.map((item) => (
-          <MyFoodRow
-            key={add._id}
-            item={item}
-            handleDelete={handleDelete}
-          ></MyFoodRow>
-        ))}
+    <div className="block items-center justify-center lg:min-h-screen py-10">
+      <Helmet>
+        <title> Micro Food | My Food </title>
+      </Helmet>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th className="font-bold text-lg"></th>
+
+              <th className="font-bold text-lg">Food Details </th>
+
+              <p className="ml-10 font-bold text-lg">
+                <th>Donator Details</th>
+              </p>
+            </tr>
+          </thead>
+          <tbody>
+            {add?.map((item) => (
+              <MyFoodRow
+                item={item}
+                key={item._id}
+                handleDelete={handleDelete}
+              ></MyFoodRow>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -1,34 +1,47 @@
 import { Link } from "react-router-dom";
 
 const MyFoodRow = ({ item, handleDelete }) => {
-  const { _id, food_name, image, donator_name } = item;
-
+  const { _id, food_name, image, donator_name, expiration_date } = item;
+  // console.log(item);
   return (
-    <div className="card w-96 bg-base-100 shadow-xl spy">
-      <figure>
-        <img className="w-[300px] h-[200px]" src={image} alt="Shoes" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">Food Name:{food_name}</h2>
-        <p className="card-title">Donator Name:{donator_name}</p>
-        <div className="card-actions justify-between mt-3">
-          <button
-            onClick={() => handleDelete(_id)}
-            className="btn btn-error text-white"
-          >
-            Delete
-          </button>
-          <Link to={`/update/${_id}`}>
-            <button className="btn btn-error text-white">Update</button>
-          </Link>
+    <tr>
+      <th>
+        <button
+          onClick={() => handleDelete(_id)}
+          className="btn btn-circle btn-outline"
+        >
+          <i className="fa-regular lg:text-xl fa-trash-can"></i>
+        </button>
+      </th>
+      <td>
+        <div className="flex items-center space-x-3">
+          <div className="avatar">
+            <div className="mask mask-squircle w-12 h-12">
+              <img src={image} alt="Avatar Tailwind CSS Component" />
+            </div>
+          </div>
+          <div>
+            <div className="font-bold">{food_name}</div>
+          </div>
         </div>
-        <div className="card-actions flex items-center justify-center my-2">
-          <Link to={`/manageSingleFood/${_id}`}>
-            <button className="btn btn-error w-44 text-white">manage</button>
-          </Link>
-        </div>
-      </div>
-    </div>
+      </td>
+
+      <td>
+        <span className="badge badge-ghost badge-sm">{donator_name}</span>
+
+        <span className="badge badge-ghost badge-sm">
+          Expire Date:{expiration_date}
+        </span>
+      </td>
+      <Link to={`/update/${_id}`}>
+        <td className="btn btn-sm mt-3 bg-transparent hover:shadow-2xl hover:bg-transparent p-1">
+          <i className="fa-regular lg:text-2xl fa-pen-to-square"></i>
+        </td>
+      </Link>
+      <Link to={`/manageSingleFood/${_id}`}>
+        <td className="btn btn-ghost btn-xs mt-5 p-1 lg:ml-10">Manage</td>
+      </Link>
+    </tr>
   );
 };
 

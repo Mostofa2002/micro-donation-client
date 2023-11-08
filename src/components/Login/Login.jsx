@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn, googleLogin, loading } = useAuth();
@@ -10,7 +11,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
   if (loading) {
     return (
       <span className="lg:mx-[600px] mx-[200px] my-[100px] loading loading-infinity loading-lg"></span>
@@ -64,6 +64,9 @@ const Login = () => {
 
   return (
     <div className="my-24  flex justify-center mx-auto ">
+      <Helmet>
+        <title> Micro Food | Login</title>
+      </Helmet>
       <div className="lg:w-[30%] px-6 py-8 md:px-8 ">
         <div className="flex justify-center mx-auto">
           <img

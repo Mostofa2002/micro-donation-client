@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAYt0DiZd2dX4Vz978KwYjiMNG4Ej-XLdM",
-  authDomain: "micro-donation-40d62.firebaseapp.com",
-  projectId: "micro-donation-40d62",
-  storageBucket: "micro-donation-40d62.appspot.com",
-  messagingSenderId: "664247467823",
-  appId: "1:664247467823:web:97e8afe73261b9ed52ebda",
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase

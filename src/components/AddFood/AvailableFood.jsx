@@ -13,7 +13,7 @@ const AvailableFood = () => {
   };
   useEffect(() => {
     fetch(
-      `http://localhost:5000/allFood?search=${search}&sort=${
+      `https://micro-server-side.vercel.app/allFood?search=${search}&sort=${
         asc ? "asc" : "desc"
       }`
     )

@@ -42,7 +42,7 @@ const Nav = () => {
                   <a>Manage My Food</a>
                 </li>
               </NavLink>
-              <NavLink to="/myCart">
+              <NavLink to="/myFoodRequest">
                 <li className="text-xl font-semibold">
                   <a>My Food Request </a>
                 </li>

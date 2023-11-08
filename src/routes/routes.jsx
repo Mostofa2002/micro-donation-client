@@ -22,7 +22,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/allFood/limited"),
+        loader: () =>
+          fetch("https://micro-server-side.vercel.app/allFood/limited"),
       },
       {
         path: "/update/:id",
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updates/${params.id}`),
+          fetch(`https://micro-server-side.vercel.app/updates/${params.id}`),
       },
       {
         path: "availableFood",
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singleFood/${params.id}`),
+          fetch(`https://micro-server-side.vercel.app/singleFood/${params.id}`),
       },
       {
         path: "manageSingleFood/:id",

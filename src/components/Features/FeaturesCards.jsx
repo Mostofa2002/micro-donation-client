@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const FeaturesCards = ({ items }) => {
@@ -13,7 +14,12 @@ const FeaturesCards = ({ items }) => {
     donator_image,
   } = items || {};
   return (
-    <div className="card lg:w-[450px] h-[700px] dark:bg-gray-400  bg-base-100 shadow-xl">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="card lg:w-[450px] h-[700px] dark:bg-gray-400  bg-base-100 shadow-xl"
+    >
       <h2 className="card-title foot-medium ml-6 mt-5 dark:text-white">
         {food_name}
       </h2>
@@ -52,7 +58,7 @@ const FeaturesCards = ({ items }) => {
           <button className="btn btn-neutral w-80 "> See Details</button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

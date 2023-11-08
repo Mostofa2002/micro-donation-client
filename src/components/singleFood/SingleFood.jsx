@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const SingleFood = () => {
   const data = useLoaderData();
@@ -65,7 +66,7 @@ const SingleFood = () => {
     console.log(addRequest);
 
     // form to database
-    fetch("http://localhost:5000/request", {
+    fetch("https://micro-server-side.vercel.app/request", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(addRequest),
@@ -86,6 +87,9 @@ const SingleFood = () => {
   };
   return (
     <div className="flex justify-center items-center py-20">
+      <Helmet>
+        <title> Micro Food | Food Request </title>
+      </Helmet>
       <div className="card lg:w-[450px] h-[570px] dark:bg-gray-400  bg-base-100 shadow-xl  ">
         <h2 className="card-title foot-medium ml-3 mt-1 dark:text-white">
           Donator Details

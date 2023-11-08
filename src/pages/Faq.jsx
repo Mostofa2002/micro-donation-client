@@ -1,6 +1,6 @@
 const Faq = () => {
   return (
-    <div className="container flex flex-col px-6 py-10  space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center lg:mx-[275px]">
+    <div className="container flex flex-col px-6  space-y-6 lg:h-[32rem] lg:py-28 lg:flex-row lg:items-center lg:mx-[275px]">
       <div className="w-full lg:w-1/2 lg:mt-9">
         <div className="collapse dark:bg-gray-600 dark:text-white collapse-arrow bg-base-200 my-10">
           <input type="radio" name="my-accordion-2" checked="checked" />

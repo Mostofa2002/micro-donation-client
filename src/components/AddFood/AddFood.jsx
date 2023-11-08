@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
   const { user } = useAuth();
@@ -44,7 +45,7 @@ const AddFood = () => {
     console.log(addRequest);
 
     // form to database
-    fetch(" http://localhost:5000/allFood", {
+    fetch(" https://micro-server-side.vercel.app/allFood", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(addRequest),
@@ -63,6 +64,9 @@ const AddFood = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title> Micro Food | Add Food </title>
+      </Helmet>
       <div className="mt-8 container mx-auto py-10">
         <div className="w-full px-8 py-10 mx-auto overflow-hidden bg-green-600 rounded-xl shadow-2xl  lg:max-w-5xl shadow-gray-300/50 ">
           <h1 className="text-4xl font-bold text-center  text-white">

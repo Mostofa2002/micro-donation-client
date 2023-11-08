@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -46,11 +47,20 @@ const Register = () => {
       })
       .catch((err) => {
         console.log(err.message);
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Back",
+        });
       });
   };
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title> Micro Food | Register</title>
+      </Helmet>
       <section className="">
         <div className="container flex items-center justify-center  px-6 mx-auto">
           <div className="w-full max-w-lg ">
@@ -157,8 +167,7 @@ const Register = () => {
 
               {password && (
                 <p className="text-red-700 font-bold mt-5  ">
-                  {" "}
-                  <i className="fa-solid fa-triangle-exclamation"></i>{" "}
+                  <i className="fa-solid fa-triangle-exclamation"></i>
                   {password}
                 </p>
               )}
