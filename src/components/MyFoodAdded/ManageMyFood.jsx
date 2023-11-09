@@ -4,18 +4,29 @@ import Swal from "sweetalert2";
 import MyFoodRow from "./MyFoodRow";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyCart = () => {
   const { user } = useAuth();
   // console.log(user);
-  const url = `https://micro-server-side.vercel.app/Food?email=${user?.email}`;
+  const axiosSecure = useAxiosSecure();
+
   const [add, setAdd] = useState([]);
+
+  // const url = `https://micro-server-side.vercel.app/Food?email=${user?.email}`;
+
+  const url = `Food?email=${user?.email}`;
+
   useEffect(() => {
-    fetch(url, { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => setAdd(data));
-  }, [add, url]);
+    // fetch(url, { credentials: "include" })
+    //   .then((res) => res.json())
+    //   .then((data) => setAdd(data));
+
+    axiosSecure.get(url).then((res) => setAdd(res.data));
+  }, [axiosSecure, url]);
+
   // console.log(add);
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

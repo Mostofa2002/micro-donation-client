@@ -14,7 +14,7 @@ const AllFood = ({ items }) => {
     donator_image,
   } = items || {};
   return (
-    <div className="card lg:w-[450px] h-[750px] dark:bg-gray-400  bg-base-100 shadow-xl ">
+    <div className="card lg:w-[500px] lg:h-[750px] dark:bg-gray-400  bg-base-200 shadow-xl ">
       <h2 className="card-title foot-medium ml-6 mt-5 dark:text-white">
         {food_name}
       </h2>

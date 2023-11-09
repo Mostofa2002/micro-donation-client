@@ -54,7 +54,7 @@ const Login = () => {
           confirmButtonText: "Done",
         });
 
-        navigate(location?.state ? location?.state : "/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         console.log(err);

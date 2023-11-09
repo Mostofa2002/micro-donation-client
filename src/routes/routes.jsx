@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Roots from "../Roots/Roots";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
-import AvailableFood from "../components/AddFood/AvailableFood";
+import AvailableFood from "../components/AllFood/AvailableFood";
 import ManageMyFood from "../components/MyFoodAdded/ManageMyFood";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
