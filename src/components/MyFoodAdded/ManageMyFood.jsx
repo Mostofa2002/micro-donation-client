@@ -63,13 +63,9 @@ const MyCart = () => {
           {/* head */}
           <thead>
             <tr>
-              <th className="font-bold text-lg"></th>
-
-              <th className="font-bold text-lg">Food Details </th>
-
-              <p className="ml-10 font-bold text-lg">
-                <th>Donator Details</th>
-              </p>
+              <th className="font-bold text-lg">Delete</th>
+              <th className="font-bold text-lg">Food Photo </th>
+              <th className="font-bold text-lg">Donator Details</th>
             </tr>
           </thead>
           <tbody>
