@@ -25,22 +25,22 @@ const MyFoodRow = ({ item, handleDelete }) => {
           </div>
         </div>
       </td>
-
       <td>
         <span className="badge badge-ghost badge-sm">{donator_name}</span>
-
         <span className="badge badge-ghost badge-sm">
           Expire Date:{expiration_date}
         </span>
       </td>
-      <Link to={`/update/${_id}`}>
-        <td className="btn btn-sm mt-3 bg-transparent hover:shadow-2xl hover:bg-transparent p-1">
+      <th className="btn btn-sm mt-3 bg-transparent hover:shadow-2xl hover:bg-transparent p-1">
+        <Link to={`/update/${_id}`}>
           <i className="fa-regular lg:text-2xl fa-pen-to-square"></i>
-        </td>
-      </Link>
-      <Link to={`/manageSingleFood/${_id}`}>
-        <td className="btn btn-ghost btn-xs mt-5 p-1 lg:ml-10">Manage</td>
-      </Link>
+        </Link>
+      </th>
+
+      <th className="btn btn-ghost btn-xs mt-5 p-1 lg:ml-10">
+        <Link to={`/manageSingleFood/${_id}`}></Link>
+        Manage
+      </th>
     </tr>
   );
 };

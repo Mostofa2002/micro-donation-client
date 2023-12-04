@@ -66,6 +66,7 @@ const MyCart = () => {
               <th className="font-bold text-lg">Delete</th>
               <th className="font-bold text-lg">Food Photo </th>
               <th className="font-bold text-lg">Donator Details</th>
+              <th className="font-bold text-lg">Management </th>
             </tr>
           </thead>
           <tbody>
